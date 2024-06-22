@@ -1,0 +1,11 @@
+{
+    "username": "username_here",
+    "notes": {
+        "count": "0",
+        "note": {}
+    },
+    "reminders": {
+        "count": "0",
+        "reminder": {}
+    }
+}
