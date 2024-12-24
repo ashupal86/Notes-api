@@ -1,30 +1,30 @@
 import os
 import subprocess
 import sys
-import venv
 
-def create_virtualenv():
-    """Create a virtual environment if it doesn't exist."""
-    if not os.path.exists('venv'):
-        print("Creating virtual environment...")
-        venv.create('venv', with_pip=True)
-        print("Virtual environment created.")
-
+        
 def install_requirements():
     """Install dependencies from requirements.txt."""
     if os.path.exists('requirements.txt'):
-        print("Installing dependencies...")
-        subprocess.check_call(['python3', '-m', 'pip', 'install', '--upgrade', 'pip'])
-        subprocess.check_call(['python3', '-m', 'pip', 'install','--no-cache-dir', '-r', 'requirements.txt'])
+        print("Activating virtual environment and installing dependencies...")
+
+        # Activate the virtual environment and install dependencies
+        activate_script = os.path.join('venv', 'Scripts', 'activate') if os.name == 'nt' else os.path.join('venv', 'bin', 'activate')
+        
+        # Run pip installation commands in the activated virtual environment
+        subprocess.run([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip','--break-system-packages'])
+        subprocess.run([sys.executable, '-m', 'pip', 'install', '--no-cache-dir', '-r', 'requirements.txt','--break-system-packages'])
+
         print("Dependencies installed.")
     else:
         print("requirements.txt file not found. Please create it with the necessary dependencies.")
 
 
+
 def main():
     """Main function to create virtual environment, install dependencies, and run the Flask app."""
-    create_virtualenv()
     install_requirements()
+
 
 if __name__ == "__main__":
     main()
