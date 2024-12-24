@@ -14,6 +14,7 @@ def install_requirements():
         # Run pip installation commands in the activated virtual environment
         subprocess.run([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip','--break-system-packages'])
         subprocess.run([sys.executable, '-m', 'pip', 'install', '--no-cache-dir', '-r', 'requirements.txt','--break-system-packages'])
+        subprocess.run(['sqlite3','--version'])
 
         print("Dependencies installed.")
     else:
